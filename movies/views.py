@@ -1,25 +1,17 @@
-# from django.http import HttpResponse
 from django.shortcuts import render
-from datetime import datetime  # NOWE
+from datetime import datetime
 
-# Create your views here.
-# def hello_world(request):
-#     return HttpResponse("Witaj świecie!")
+from movies.models import Movie
 
-# Create your views here.
-# def hello_world(request):
-#     return render(request, template_name="hello.html")  # NOWE
 
-# Create your views here.
 def hello_world(request):
-    our_context = {"time": datetime.now()}  # NOWE
+    our_context = {"time": datetime.now()}
     return render(
         request,
         template_name="hello.html",
         context=our_context
-    )  # NOWE
+    )
 
-from movies.models import Movie
 
 def list_movies(request):
     movies = Movie.objects.all()
@@ -27,4 +19,12 @@ def list_movies(request):
         request,
         template_name="movie_list.html",
         context={"movies": movies}
+    )
+
+
+def user_profile(request):
+    return render(
+        request,
+        template_name="registration/profile.html",
+        context={"user": request.user}
     )

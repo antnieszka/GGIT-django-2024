@@ -2,14 +2,24 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Moja biblioteka filmów</title>
+    <title>{% block title %}Moja biblioteka filmów{% endblock %}</title>
 </head>
 <body>
+{% block nav %}
+    <a href="{% url 'hello_world' %}">Witaj świecie</a>
+    <a href="{% url 'list_movies' %}">Lista filmów</a>
+    <a href="{% url 'login' %}">Zaloguj się</a>
+    <a href="{% url 'logout' %}">Wyloguj się</a>
+{% endblock %}
 <h1>
     Witamy w filmotece!
 </h1>
 {% block content %}
     Tu będzie treść...
+{% endblock %}
+
+{% block footer %}
+    Domyślna stopka
 {% endblock %}
 </body>
 </html>
