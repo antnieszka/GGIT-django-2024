@@ -2,5 +2,7 @@
 
 {% block content %}
     <p>Witaj {{ user }}</p>
+    <p>Ostatnie logowanie: {{ user.last_login }}</p>
+    <p>Jesteś z nami od: {{ user.date_joined }}</p>
 {% endblock %}
 

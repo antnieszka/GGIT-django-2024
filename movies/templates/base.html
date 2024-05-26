@@ -8,8 +8,15 @@
 {% block nav %}
     <a href="{% url 'hello_world' %}">Witaj świecie</a>
     <a href="{% url 'list_movies' %}">Lista filmów</a>
-    <a href="{% url 'login' %}">Zaloguj się</a>
-    <a href="{% url 'logout' %}">Wyloguj się</a>
+    {% if request.user.is_authenticated %}
+        Zalogowano jako: {{ request.user.username }}
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <input type="submit" value="Wyloguj się">
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Zaloguj się</a>
+    {% endif %}
 {% endblock %}
 <h1>
     Witamy w filmotece!

@@ -28,3 +28,31 @@ def user_profile(request):
         template_name="registration/profile.html",
         context={"user": request.user}
     )
+
+# NOWE poniżej 
+from django.contrib.auth.forms import UserCreationForm
+
+def user_signup(request):
+    if request.method == "POST":
+        # tutaj przetwarzamy dane z formularza
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(
+                request,
+                template_name="registration/signup_complete.html",
+            )
+        else:
+            return render(
+                request,
+                template_name="registration/signup_form.html",
+                context={"form": form}
+            )
+    else:  # np metoda GET
+        # wysyłamy pusty formularz użytkownikowi
+        form = UserCreationForm()
+    return render(
+        request,
+        template_name="registration/signup_form.html",
+        context={"form": form}
+    )

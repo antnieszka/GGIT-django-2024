@@ -20,7 +20,8 @@ from movies import views
 
 urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
-    path("accounts/profile/", views.user_profile),
+    path("accounts/profile/", views.user_profile, name="user_profile"),
+    path("accounts/signup/", views.user_signup, name="user_signup"),
 
     path("admin/", admin.site.urls),
     path('hello/', views.hello_world, name="hello_world"),
