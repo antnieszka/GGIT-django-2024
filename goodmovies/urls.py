@@ -24,6 +24,6 @@ urlpatterns = [
     path("accounts/signup/", views.user_signup, name="user_signup"),
 
     path("admin/", admin.site.urls),
-    path('hello/', views.hello_world, name="hello_world"),
+    path("", views.hello_world, name="index"),
     path("filmy/", views.list_movies, name="list_movies"), 
 ]
