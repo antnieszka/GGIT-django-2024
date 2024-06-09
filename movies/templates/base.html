@@ -8,27 +8,16 @@
 </head>
 <body>
 {% block nav %}
-    <a href="{% url 'index' %}"><i class="bi bi-house"></i> Strona główna</a>
-    <a href="{% url 'list_movies' %}"><i class="bi bi-film"></i> Lista filmów</a>
-    {% if request.user.is_authenticated %}
-        <i class="bi bi-person-circle"></i> Zalogowano jako: {{ request.user.username }}
-        <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <input type="submit" value="Wyloguj się">
-        </form>
-    {% else %}
-        <a href="{% url 'login' %}">Zaloguj się</a>
-    {% endif %}
-{% endblock %}
-<h1>
-    Witamy w filmotece! <i class="bi bi-film"></i>
-</h1>
-{% block content %}
-    Tu będzie treść...
+    {% include "blocks/navbar.html" %}
 {% endblock %}
 
+<div class="container">
+    {% block content %}
+        Tu będzie treść...
+    {% endblock %}
+</div>
+
 {% block footer %}
-    Domyślna stopka
 {% endblock %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

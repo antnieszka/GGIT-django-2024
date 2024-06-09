@@ -1,9 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <h1>
+        Lista filmów
+        <a href="{% url 'movie_create' %}" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Dodaj nowy
+        </a>
+    </h1>
     {% for movie in movies %}
-    <p>
-        Film: "{{ movie }}"
-    </p>
+    <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.title }}</h5>
+          <p class="card-text">{{ movie.short_description|truncatewords:30 }}</p>
+          <a href="{% url 'movie_detail' movie.id %}" class="btn btn-primary">Więcej o filmie</a>
+        </div>
+      </div>
     {% endfor %}
 {% endblock %}

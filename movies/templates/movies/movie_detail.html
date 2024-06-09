@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>
+        {{ movie.title }}
+        <a href="{% url 'movie_update' movie.id %}" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Edytuj
+        </a>
+    </h1>
+    <h3>{{ movie.director }}</h3>
+    <h5>{{ movie.published_at|date }}</h5>
+    <p>{{ movie.short_description}}</p>
+{% endblock %}

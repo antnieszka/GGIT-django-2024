@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from datetime import datetime
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView, UpdateView, DetailView
+from django.urls import reverse_lazy
 from movies.models import Movie
 
 
@@ -11,6 +14,22 @@ def hello_world(request):
         template_name="index.html",
         context=our_context
     )
+
+
+class MovieDetailView(DetailView):
+    model = Movie
+
+
+class MovieCreateView(LoginRequiredMixin, CreateView):
+    model = Movie
+    fields = ["title", "short_description", "published_at", "rating"]
+    success_url = reverse_lazy("list_movies")
+
+
+class MovieUpdateView(LoginRequiredMixin, UpdateView):
+    model = Movie
+    fields = ["title", "short_description", "published_at", "rating"]
+    success_url = reverse_lazy("list_movies")
 
 
 def list_movies(request):
@@ -29,8 +48,6 @@ def user_profile(request):
         context={"user": request.user}
     )
 
-# NOWE poniżej 
-from django.contrib.auth.forms import UserCreationForm
 
 def user_signup(request):
     if request.method == "POST":

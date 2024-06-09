@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<p>test logowania</p>
-
 <form method="post">
-{% csrf_token %}
-{{ form.as_p }}
-<input type="submit" value="Zaloguj się">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">
+        Zaloguj się
+    </button>
 </form>
 {% endblock %}
